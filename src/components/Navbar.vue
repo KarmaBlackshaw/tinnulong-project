@@ -6,7 +6,7 @@
     height="70px"
   >
     <v-toolbar-title
-      class="font-weight-black headline"
+      class="font-weight-black headline mr-10"
       @click="$vuetify.goTo('#hero')"
     >
       <span class="blue-grey--text text--lighten-3">TINNULONG FOUNDATION</span>
@@ -38,7 +38,7 @@
       class="blue-grey--text text--lighten-2"
       @click="$vuetify.goTo('#contact')"
     >
-      Contact Us
+      Contact
     </v-btn>
 
     <v-spacer />
