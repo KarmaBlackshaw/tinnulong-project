@@ -1,32 +1,158 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <v-app>
+      <navbar />
+
+      <v-content>
+        <home-section />
+        <features-section />
+        <gallery-section />
+        <about-section />
+
+        <section id="stats">
+          <v-parallax
+            :height="$vuetify.breakpoint.smAndDown ? 700 : 500"
+            src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+          >
+            <v-container fill-height>
+              <v-row class="mx-auto">
+                <v-col
+                  v-for="[value, title] of stats"
+                  :key="title"
+                  cols="12"
+                  md="3"
+                >
+                  <div class="text-center">
+                    <div
+                      class="display-3 font-weight-black mb-4"
+                      v-text="value"
+                    />
+
+                    <div
+                      class="title font-weight-regular text-uppercase"
+                      v-text="title"
+                    />
+                  </div>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-parallax>
+        </section>
+
+        <section id="blog">
+          <div class="py-12" />
+
+          <v-container>
+            <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">
+              Blog
+            </h2>
+
+            <v-responsive
+              class="mx-auto mb-12"
+              width="56"
+            >
+              <v-divider class="mb-1" />
+
+              <v-divider />
+            </v-responsive>
+
+            <v-row>
+              <v-col
+                v-for="({ src, text, title }, i) in articles"
+                :key="i"
+                cols="12"
+                md="4"
+              >
+                <v-img
+                  :src="src"
+                  class="mb-4"
+                  height="275"
+                  max-width="100%"
+                />
+
+                <h3
+                  class="font-weight-black mb-4 text-uppercase"
+                  v-text="title"
+                />
+
+                <div
+                  class="title font-weight-light mb-5"
+                  v-text="text"
+                />
+
+                <v-btn
+                  class="ml-n4 font-weight-black"
+                  text
+                >
+                  Continue Reading
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+
+          <div class="py-12" />
+        </section>
+
+        <contact-section />
+      </v-content>
+
+      <v-footer
+        class="justify-center"
+        color="#292929"
+        height="100"
+      >
+        <div class="title font-weight-light grey--text text--lighten-1 text-center">
+          &copy; {{ (new Date()).getFullYear() }} — Vuetify, LLC — Made with 💜 by John Leider
+        </div>
+      </v-footer>
+    </v-app>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Navbar from '@/components/Navbar'
+import HomeSection from '@/views/Home'
+import AboutSection from '@/views/About'
+import FeaturesSection from '@/views/Features'
+import ContactSection from '@/views/Contact'
+import GallerySection from '@/views/Gallery'
+
+export default {
+  name: 'App',
+
+  components: {
+    Navbar,
+    HomeSection,
+    AboutSection,
+    FeaturesSection,
+    ContactSection,
+    GallerySection
+  },
+
+  data: () => ({
+    articles: [
+      {
+        src: 'https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+        title: 'Mobile first & Responsive',
+        text: 'Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus dictum.'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1475938476802-32a7e851dad1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+        title: 'Think outside the box',
+        text: 'Nam ut leo ipsum. Maecenas pretium aliquam feugiat. Aenean vel tempor est, vitae tincidunt risus. Sed sodales vestibulum nibh.'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1416339442236-8ceb164046f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1892&q=80',
+        title: 'Small changes, big difference',
+        text: 'Vestibulum in dictum velit, in rhoncus nibh. Maecenas neque libero, interdum a dignissim in, aliquet vitae lectus. Phasellus lorem enim, luctus ut velit eget.'
+      }
+    ],
+    stats: [
+      ['24k', 'Github Stars'],
+      ['330+', 'Releases'],
+      ['1m', 'Downloads/mo'],
+      ['5m', 'Total Downloads']
+    ]
+  })
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>

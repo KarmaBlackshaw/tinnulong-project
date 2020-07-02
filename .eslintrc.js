@@ -5,12 +5,14 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
+    'plugin:vue/recommended',
     '@vue/standard'
   ],
   parserOptions: {
     parser: 'babel-eslint'
   },
   rules: {
+    'vue/no-unused-components': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
