@@ -12,7 +12,7 @@
         <section id="stats">
           <v-parallax
             :height="$vuetify.breakpoint.smAndDown ? 700 : 500"
-            src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+            :src="require('@/assets/home_2.jpg')"
           >
             <v-container fill-height>
               <v-row class="mx-auto">
@@ -39,59 +39,7 @@
           </v-parallax>
         </section>
 
-        <section id="blog">
-          <div class="py-12" />
-
-          <v-container>
-            <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">
-              Blog
-            </h2>
-
-            <v-responsive
-              class="mx-auto mb-12"
-              width="56"
-            >
-              <v-divider class="mb-1" />
-
-              <v-divider />
-            </v-responsive>
-
-            <v-row>
-              <v-col
-                v-for="({ src, text, title }, i) in articles"
-                :key="i"
-                cols="12"
-                md="4"
-              >
-                <v-img
-                  :src="src"
-                  class="mb-4"
-                  height="275"
-                  max-width="100%"
-                />
-
-                <h3
-                  class="font-weight-black mb-4 text-uppercase"
-                  v-text="title"
-                />
-
-                <div
-                  class="title font-weight-light mb-5"
-                  v-text="text"
-                />
-
-                <v-btn
-                  class="ml-n4 font-weight-black"
-                  text
-                >
-                  Continue Reading
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-
-          <div class="py-12" />
-        </section>
+        <blog-section />
 
         <contact-section />
       </v-content>
@@ -102,7 +50,7 @@
         height="100"
       >
         <div class="title font-weight-light grey--text text--lighten-1 text-center">
-          &copy; {{ (new Date()).getFullYear() }} — Vuetify, LLC — Made with 💜 by John Leider
+          &copy; {{ (new Date()).getFullYear() }} — Tinnulong Foundation Inc.
         </div>
       </v-footer>
     </v-app>
@@ -116,6 +64,7 @@ import AboutSection from '@/views/About'
 import FeaturesSection from '@/views/Features'
 import ContactSection from '@/views/Contact'
 import GallerySection from '@/views/Gallery'
+import BlogSection from '@/views/Blog'
 
 export default {
   name: 'App',
@@ -126,7 +75,8 @@ export default {
     AboutSection,
     FeaturesSection,
     ContactSection,
-    GallerySection
+    GallerySection,
+    BlogSection
   },
 
   data: () => ({
@@ -148,10 +98,10 @@ export default {
       }
     ],
     stats: [
-      ['24k', 'Github Stars'],
-      ['330+', 'Releases'],
-      ['1m', 'Downloads/mo'],
-      ['5m', 'Total Downloads']
+      ['24k', 'Families'],
+      ['330+', 'Children'],
+      ['1m', 'Supporters'],
+      ['5m', 'Total Contributors']
     ]
   })
 }

@@ -5,7 +5,10 @@
     :hide-on-scroll="false"
     height="70px"
   >
-    <v-toolbar-title class="font-weight-black headline">
+    <v-toolbar-title
+      class="font-weight-black headline"
+      @click="$vuetify.goTo('#hero')"
+    >
       <span class="blue-grey--text text--lighten-3">TINNULONG FOUNDATION</span>
     </v-toolbar-title>
 
